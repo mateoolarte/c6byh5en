@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      namespace :products do
-        get '/' => 'products#index'
-      end  
+      get '/products' => 'products#index'
     end  
   end  
 
