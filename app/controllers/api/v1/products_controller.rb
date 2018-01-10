@@ -1,4 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
+  skip_before_filter :verify_authenticity_token  
 
   def index
     render json: Product.all
@@ -7,9 +8,9 @@ class Api::V1::ProductsController < ApplicationController
   def create
     @product = Product.new(products_params)
     if @product.save
-      render json: Product.all
+      render json: { status: 201, product: Product.all } 
     else
-      render :json => { :errors => @product.errors.full_messages }
+      render json: { status: 422, errors: @product.errors.full_messages }
     end
   end
 
