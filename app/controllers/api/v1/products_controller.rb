@@ -8,9 +8,9 @@ class Api::V1::ProductsController < ApplicationController
   def create
     @product = Product.new(products_params)
     if @product.save
-      render json: { status: 201, product: Product.all } 
+      render status: 201, json: { product: Product.all } 
     else
-      render json: { status: 422, errors: @product.errors.full_messages }
+      render status: 422, json: { errors: @product.errors.full_messages }
     end
   end
 
